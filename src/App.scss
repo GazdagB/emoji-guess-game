@@ -1,0 +1,84 @@
+@import 'mixins';
+
+$primary-color: #038aff;
+$secondary-color: #b2b2b2;
+
+
+.button-basic{
+  background-color: #038aff;
+  color: #ffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background-color: #ffff;
+    color: #038aff;
+    border: 1px solid #038aff;
+  }
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.App{
+  height: 100vh;
+  background-color: #038aff ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 300px 0;
+}
+
+.emoji-game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  width: 50%;
+  background-color: #ffff;
+  box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+   &-emojies{
+    font-size: 5rem;
+   }
+
+   button.primary{
+    @include button($primary-color);
+   }
+
+   button.secondary{
+    @include button($secondary-color);
+   }
+
+   form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 30px;
+
+    input{
+      padding: 15px 20px;
+      width: 300px;
+     }
+
+
+   }
+   
+}
