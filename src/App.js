@@ -8,17 +8,41 @@ function App() {
   const [emojiData, setEmojiData] = useState(allEmojiData);
   const [randomIndex, setRandomIndex] = useState(0); // Initialize with 0
   const [life,setLife] = useState(3);
+  const [matching, setMatching] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   function handleSubmit(e){
     e.preventDefault();
     setSubmitedInput(input);
   }
 
+  useEffect(() => {
+    if (emojiData[randomIndex].Title.toLocaleLowerCase() === submitedInput.toLocaleLowerCase()){
+      setMatching(true);
+    }
+  }, [submitedInput]);
+
+  useEffect(() => {
+    if(life === 0){
+      setGameOver(true);
+    }
+  }, [life]);
+
   function handleSkip(){
-    setInput("");
-    setSubmitedInput("");
-    setRandomIndex(Math.floor(Math.random() * emojiData.length));
-    setLife((prevLife) => prevLife - 1);
+
+    if(matching){
+      setInput("");
+      setSubmitedInput("");
+      setMatching(false);
+      setRandomIndex(Math.floor(Math.random() * emojiData.length));
+    }else{
+      setInput("");
+      setSubmitedInput("");
+      setRandomIndex(Math.floor(Math.random() * emojiData.length));
+      setLife((prevLife) => prevLife - 1);
+    }
+
+    
   }
 
 
@@ -33,6 +57,7 @@ function App() {
   return (
     
     <div className="App">
+      {}
       <div className="emoji-game">
        <h1>Guess The Movie by the Emojis</h1>
         <h2 className='emoji-game-emojies'>
@@ -42,8 +67,12 @@ function App() {
         <input placeholder='What movie is this...' maxLength={50} value={input} onChange={(e) => setInput(e.target.value)} />
         <button className='primary' onClick={handleSubmit}>Guess</button>
         </form>
-       <h3>{emojiData[randomIndex].Title.toLocaleLowerCase() === submitedInput.toLocaleLowerCase() ? `Correct the answer is: ${emojiData[randomIndex].Title}` : ""}</h3>
-       <button className='secondary' onClick={handleSkip}>Skip</button>
+       <h3>{emojiData[randomIndex].Title.toLocaleLowerCase() === submitedInput.toLocaleLowerCase() ? 
+       (<div>
+        <h3 className='correct-answer'>Correct! The Answer is:</h3>
+        <h3 className='movie-title'>{emojiData[randomIndex].Title}</h3>
+       </div>) : ""}</h3>
+       <button className={matching ? "primary" : "secondary"} onClick={handleSkip}>{matching ? "Next" : "Skip"}</button>
       </div>
       
     </div>

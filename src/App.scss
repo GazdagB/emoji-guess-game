@@ -77,8 +77,22 @@ $secondary-color: #b2b2b2;
       padding: 15px 20px;
       width: 300px;
      }
+   }
 
+   h3{
+    margin: 0px 0 25px 0;
+   }
 
+   .movie-title{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 200;
+    color: rgb(147, 225, 147);
+   }
+
+   .correct-answer{
+    font-weight: 200;
+    font-size: 2rem;
    }
    
 }
