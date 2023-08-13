@@ -67,7 +67,7 @@ function App() {
         <input placeholder='What movie is this...' maxLength={50} value={input} onChange={(e) => setInput(e.target.value)} />
         <button className='primary' onClick={handleSubmit}>Guess</button>
         </form>
-       <h3>{emojiData[randomIndex].Title.toLocaleLowerCase() === submitedInput.toLocaleLowerCase() ? 
+       <h3>{emojiData[randomIndex].Title.toLocaleLowerCase() === submitedInput.toLocaleLowerCase() && randomIndex === emojiData[randomIndex] ? 
        (<div>
         <h3 className='correct-answer'>Correct! The Answer is:</h3>
         <h3 className='movie-title'>{emojiData[randomIndex].Title}</h3>
